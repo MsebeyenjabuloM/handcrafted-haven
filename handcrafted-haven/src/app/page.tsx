@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main className="min-h-screen p-8">
+      <main className="min-h-screen p-8 max-w-7xl mx-auto">
         <section className="text-center py-20">
           <h1 className="text-5xl font-bold mb-6">
             Discover Handmade Treasures
@@ -19,13 +19,14 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="grid md:grid-cols-2 gap-6">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
             <ProductCard
               key={product.id}
               name={product.name}
               price={product.price}
-            />
+              image={product.image}
+            />  
           ))}
         </section>
       </main>
