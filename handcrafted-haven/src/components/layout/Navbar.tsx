@@ -12,6 +12,7 @@ export default function Navbar() {
         <Link href="/shop">Shop</Link>
         <Link href="/sellers">Sellers</Link>
         <Link href="/about">About</Link>
+        <Link href="/dashboard">Dashboard</Link>
       </div>
     </nav>
   );
