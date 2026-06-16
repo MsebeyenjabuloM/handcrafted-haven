@@ -5,7 +5,10 @@ import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/products/ProductCard";
-import { products } from "@/data/products";
+// import { products } from "@/data/products";
+import {
+  useProducts,
+} from "@/context/ProductContext";
 
 const categories = [
   "All",
@@ -22,6 +25,7 @@ const priceRanges = [
 ];
 
 export default function ShopPage() {
+  const { products } = useProducts();
   const [selectedCategory, setSelectedCategory] =
     useState("All");
 

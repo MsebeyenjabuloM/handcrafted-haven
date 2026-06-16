@@ -2,20 +2,25 @@
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { products } from "@/data/products";
+// import { products } from "@/data/products";
 import Link from "next/link";
 import { useState } from "react";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
 import { useAuth } from "@/context/AuthContext";
+import {
+  useProducts,
+} from "@/context/ProductContext";
 
 export default function DashboardPage() {
   const { user } = useAuth();
+  const {
+  products,
+  deleteProduct,
+} = useProducts();
 
-const [dashboardProducts, setDashboardProducts] =
-  useState(products);
 
   const sellerProducts =
-  dashboardProducts.filter(
+  products.filter(
     (product) =>
       product.sellerSlug ===
       user?.sellerSlug
@@ -30,11 +35,7 @@ const [dashboardProducts, setDashboardProducts] =
 
   if (!confirmed) return;
 
-  setDashboardProducts(
-    dashboardProducts.filter(
-      (product) => product.id !== id
-    )
-  );
+  deleteProduct(id);
 };
   
     return (

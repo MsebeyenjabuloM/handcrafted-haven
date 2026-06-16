@@ -4,8 +4,20 @@ import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import {
+  useProducts,
+} from "@/context/ProductContext";
+
+import { useAuth }
+  from "@/context/AuthContext";
 
 export default function AddProductPage() {
+  const { addProduct } =
+  useProducts();
+
+const { user } =
+  useAuth();
+
   const [productName, setProductName] =
     useState("");
 
@@ -43,30 +55,49 @@ export default function AddProductPage() {
 };
 
   const handleSubmit = (
-    e: React.FormEvent
-  ) => {
-    e.preventDefault();
+  e: React.FormEvent
+) => {
+  e.preventDefault();
 
-    console.log({
-      productName,
-      price,
-      category,
-      description,
-    });
+  const newProduct = {
+    id: Date.now(),
 
-    setSubmittedProduct({
-        productName,
-        price,
-        category,
-        description,
-        });
+    name: productName,
 
-    setProductName("");
-    setPrice("");
-    setCategory("");
-    setDescription("");
-    setImagePreview("");
+    price: Number(price),
+
+    image:
+      imagePreview ||
+      "/placeholder-product.jpg",
+
+    seller:
+      user?.name || "Unknown Seller",
+
+    sellerSlug:
+      user?.sellerSlug || "",
+
+    category,
+
+    rating: 0,
+
+    description,
   };
+
+  addProduct(newProduct);
+
+  setSubmittedProduct({
+    productName,
+    price,
+    category,
+    description,
+  });
+
+  setProductName("");
+  setPrice("");
+  setCategory("");
+  setDescription("");
+  setImagePreview("");
+};
 
   return (
     <ProtectedRoute>
