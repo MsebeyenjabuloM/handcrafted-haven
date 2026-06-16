@@ -21,8 +21,14 @@ export default async function SellerPage({
     return <h1>Seller Not Found</h1>;
   }
 
-  const sellerProducts = products.filter(
-    (product) => product.seller === seller.name
+  // const sellerProducts = products.filter(
+  //   (product) => product.seller === seller.name
+  // );
+
+  const sellerProducts =
+  products.filter(
+    (product) =>
+      product.sellerSlug === seller.slug
   );
 
   return (

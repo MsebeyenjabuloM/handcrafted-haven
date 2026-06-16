@@ -10,6 +10,7 @@ import {
 type User = {
   name: string;
   email: string;
+  sellerSlug: string;
 };
 
 type AuthContextType = {
@@ -60,6 +61,7 @@ export function AuthProvider({
   const loggedInUser = {
     name: email.split("@")[0],
     email,
+    sellerSlug: "sarah-pottery-studio",
   };
 
   setUser(loggedInUser);
@@ -78,6 +80,9 @@ const register = (
   const newUser = {
     name,
     email,
+    sellerSlug: name
+    .toLowerCase()
+    .replace(/\s+/g, "-"),
   };
 
   setUser(newUser);

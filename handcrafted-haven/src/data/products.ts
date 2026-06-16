@@ -5,6 +5,7 @@ export const products = [
     price: 450,
     image: "/striped-ceramic-vase.jpg",
     seller: "Sarah's Pottery Studio",
+    sellerSlug: "sarah-pottery-studio",
     category: "Pottery",
     rating: 4.8,
     description:
@@ -16,6 +17,7 @@ export const products = [
     price: 320,
     image: "/weaved-food-dome.jpg",
     seller: "Crafted by Nandi",
+    sellerSlug: "crafted-by-nandi",
     category: "Textiles",
     rating: 4.7,
     description:
@@ -27,6 +29,7 @@ export const products = [
     price: 180,
     image: "/maroon-candle-set.jpg",
     seller: "Light & Craft",
+    sellerSlug: "light-and-craft",
     category: "Home Decor",
     rating: 4.9,
     description:

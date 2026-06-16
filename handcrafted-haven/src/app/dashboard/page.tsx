@@ -6,10 +6,22 @@ import { products } from "@/data/products";
 import Link from "next/link";
 import { useState } from "react";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import { useAuth } from "@/context/AuthContext";
 
 export default function DashboardPage() {
-  const [dashboardProducts, setDashboardProducts] =
+  const { user } = useAuth();
+
+const [dashboardProducts, setDashboardProducts] =
   useState(products);
+
+  const sellerProducts =
+  dashboardProducts.filter(
+    (product) =>
+      product.sellerSlug ===
+      user?.sellerSlug
+  );
+
+  
 
   const handleDelete = (id: number) => {
   const confirmed = window.confirm(
@@ -47,7 +59,7 @@ export default function DashboardPage() {
             </h2>
 
             <p className="text-3xl font-bold mt-2">
-              {dashboardProducts.length}
+              {sellerProducts.length}
             </p>
           </div>
 
@@ -90,7 +102,7 @@ export default function DashboardPage() {
 
         <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {dashboardProducts.map((product) => (
+          {sellerProducts.map((product) => (
             <div
               key={product.id}
               className="border rounded-xl p-5 bg-white shadow"
@@ -122,11 +134,24 @@ export default function DashboardPage() {
                 Delete
                 </button>
 
+
               </div>
             </div>
           ))}
 
         </section>
+
+        {sellerProducts.length === 0 && (
+          <div className="border rounded-xl p-8 text-center mt-8">
+            <h2 className="text-2xl font-semibold mb-2">
+              No Products Yet
+            </h2>
+
+            <p className="text-gray-600">
+              Add your first handcrafted item.
+            </p>
+          </div>
+        )}
 
       </main>
 

@@ -1,7 +1,7 @@
 export const sellers = [
   {
     id: 1,
-    slug: "sarah",
+    slug: "sarah-pottery-studio",
     name: "Sarah's Pottery Studio",
     specialty: "Handmade Pottery",
     image: "/seller-sarah.jpg",
@@ -9,7 +9,7 @@ export const sellers = [
   },
   {
     id: 2,
-    slug: "nandi",
+    slug: "crafted-by-nandi",
     name: "Crafted by Nandi",
     specialty: "Textile & Basket Weaving",
     image: "/seller-nandi.jpg",
@@ -25,7 +25,7 @@ export const sellers = [
   },
   {
   id: 4,
-  slug: "woodcraft",
+  slug: "woodcraft-creations",
   name: "Woodcraft Creations",
   specialty: "Handmade Woodwork",
   image: "/seller-woodcraft.jpg",
