@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { products } from "@/data/products";
 import Link from "next/link";
 import { useState } from "react";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 export default function DashboardPage() {
   const [dashboardProducts, setDashboardProducts] =
@@ -25,7 +26,7 @@ export default function DashboardPage() {
 };
   
     return (
-    <>
+    <ProtectedRoute>
       <Navbar />
 
       <main className="min-h-screen p-8 max-w-7xl mx-auto">
@@ -130,6 +131,6 @@ export default function DashboardPage() {
       </main>
 
       <Footer />
-    </>
+    </ProtectedRoute>
   );
 }

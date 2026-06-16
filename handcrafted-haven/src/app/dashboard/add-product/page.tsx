@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 export default function AddProductPage() {
   const [productName, setProductName] =
@@ -68,7 +69,7 @@ export default function AddProductPage() {
   };
 
   return (
-    <>
+    <ProtectedRoute>
       <Navbar />
 
       <main className="min-h-screen p-8 max-w-3xl mx-auto">
@@ -236,6 +237,6 @@ export default function AddProductPage() {
       </main>
 
       <Footer />
-    </>
+    </ProtectedRoute>
   );
 }

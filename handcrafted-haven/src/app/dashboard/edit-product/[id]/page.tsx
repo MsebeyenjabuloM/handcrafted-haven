@@ -5,6 +5,7 @@ import { products } from "@/data/products";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useParams } from "next/navigation";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 export default function EditProductPage() {
   const params = useParams();
@@ -56,7 +57,7 @@ const product = products.find(
   }
 
   return (
-    <>
+    <ProtectedRoute>
       <Navbar />
 
       <main className="min-h-screen p-8 max-w-3xl mx-auto">
@@ -133,6 +134,6 @@ const product = products.find(
       </main>
 
       <Footer />
-    </>
+    </ProtectedRoute>
   );
 }
