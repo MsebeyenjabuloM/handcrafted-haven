@@ -4,6 +4,7 @@ import {
   createContext,
   useContext,
   useState,
+  useEffect,
 } from "react";
 
 import { products as initialProducts }
@@ -39,45 +40,118 @@ const ProductContext =
   );
 
 export function ProductProvider({
-  children,
+
+children,
+
 }: {
-  children: React.ReactNode;
+
+children: React.ReactNode;
+
 }) {
-  const [products, setProducts] =
-    useState(initialProducts);
 
-  const addProduct = (
-    product: Product
-  ) => {
-    setProducts((prev) => [
-      ...prev,
-      product,
-    ]);
-  };
+const [products, setProducts] =
 
-  const deleteProduct = (
-    id: number
-  ) => {
-    setProducts((prev) =>
-      prev.filter(
-        (product) =>
-          product.id !== id
-      )
-    );
-  };
+useState(initialProducts);
 
-  return (
-    <ProductContext.Provider
-      value={{
-        products,
-        addProduct,
-        deleteProduct,
-      }}
-    >
-      {children}
-    </ProductContext.Provider>
-  );
+// Load products from localStorage when app starts
+
+useEffect(() => {
+
+const storedProducts =
+
+localStorage.getItem(
+
+"handcraftedHavenProducts"
+
+);
+
+if (storedProducts) {
+
+setProducts(
+
+JSON.parse(storedProducts)
+
+);
+
 }
+
+}, []);
+
+// Save products to localStorage whenever products change
+
+useEffect(() => {
+
+localStorage.setItem(
+
+"handcraftedHavenProducts",
+
+JSON.stringify(products)
+
+);
+
+}, [products]);
+
+const addProduct = (
+
+product: Product
+
+) => {
+
+setProducts((prev) => [
+
+...prev,
+
+product,
+
+]);
+
+};
+
+const deleteProduct = (
+
+id: number
+
+) => {
+
+setProducts((prev) =>
+
+prev.filter(
+
+(product) =>
+
+product.id !== id
+
+)
+
+);
+
+};
+
+return (
+
+<ProductContext.Provider
+
+value={{
+
+products,
+
+addProduct,
+
+deleteProduct,
+
+}}
+
+>
+
+{children}
+
+</ProductContext.Provider>
+
+);
+
+}
+
+
 
 export function useProducts() {
   const context =
